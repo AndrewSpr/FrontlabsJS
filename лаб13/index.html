@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Display</title>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <td><b>Завдання 1:</b></td>
+      <td><button onclick="showCurrentDate()">Виконати</button></td>
+      <td id="currentDateResult"></td>
+    </tr>
+    <tr>
+      <td><b>Завдання 2:</b></td>
+      <td>
+        <label for="userDateInput">Введіть дату:</label>
+        <input type="text" id="userDateInput" placeholder="дд.мм.рррр або дд/мм/рррр або дд-мм-рррр">
+        <button onclick="displayFormattedDate()">Виконати</button>
+      </td>
+      <td id="formattedDateResult"></td>
+    </tr>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>

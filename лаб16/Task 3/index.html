@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    #question {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    #options {
+      display: flex;
+      justify-content: center;
+    }
+
+    .option {
+      margin: 0 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #nextBtn {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const questions = [
+        { question: '2 x 2', options: ['2', '4', '6', '8'], correctAnswer: '4' },
+        { question: '3 x 7', options: ['15', '18', '21', '24'], correctAnswer: '21' },
+        { question: '8 x 6', options: ['42', '48', '54', '60'], correctAnswer: '48' },
+        // Додайте інші питання та відповіді за потреби
+      ];
+
+      let currentQuestionIndex = 0;
+      let score = 0;
+
+      function displayQuestion() {
+        const questionElement = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        const resultElement = document.getElementById('result');
+        const nextBtn = document.getElementById('nextBtn');
+
+        questionElement.textContent = `Питання: ${questions[currentQuestionIndex].question}`;
+        resultElement.textContent = '';
+
+        optionsContainer.innerHTML = '';
+        const options = questions[currentQuestionIndex].options;
+
+        options.forEach((option, index) => {
+          const optionElement = document.createElement('input');
+          optionElement.type = 'radio';
+          optionElement.name = 'answer';
+          optionElement.value = option;
+          optionElement.id = `option${index}`;
+          optionElement.classList.add('option');
+
+          const labelElement = document.createElement('label');
+          labelElement.textContent = option;
+          labelElement.setAttribute('for', `option${index}`);
+
+          optionsContainer.appendChild(optionElement);
+          optionsContainer.appendChild(labelElement);
+        });
+
+        nextBtn.style.display = 'none';
+      }
+
+      function checkAnswer() {
+        const selectedOption = document.querySelector('input[name="answer"]:checked');
+        if (selectedOption) {
+          const userAnswer = selectedOption.value;
+          const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+
+          if (userAnswer === correctAnswer) {
+            score++;
+            document.getElementById('result').textContent = 'Правильно!';
+          } else {
+            document.getElementById('result').textContent = `Неправильно. Правильна відповідь: ${correctAnswer}`;
+          }
+
+          const nextBtn = document.getElementById('nextBtn');
+          nextBtn.style.display = 'block';
+        }
+      }
+
+      function nextQuestion() {
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+          displayQuestion();
+        } else {
+          showFinalResult();
+        }
+      }
+
+      function showFinalResult() {
+        const container = document.getElementById('container');
+        container.innerHTML = `<p id="finalResult">Ваш результат: ${score} / ${questions.length}</p>`;
+      }
+
+      displayQuestion();
+
+      document.getElementById('checkBtn').addEventListener('click', checkAnswer);
+      document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+    });
+  </script>
+</head>
+<body>
+  <div id="container">
+    <p id="question"></p>
+    <div id="options"></div>
+    <button id="checkBtn">Перевірити</button>
+    <p id="result"></p>
+    <button id="nextBtn">Наступне завдання</button>
+  </div>
+</body>
+</html>

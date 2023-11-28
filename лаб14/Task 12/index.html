@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Elements</title>
+</head>
+<body>
+
+<script>
+  function unique(arr) {
+    return Array.from(new Set(arr));
+  }
+
+  let strings = ["Привіт", "Світ", "Привіт", "Світ", "Привіт", "Привіт", "Світ", "Світ", ":-O"];
+
+  console.log(unique(strings)); // ['Привіт', 'Світ', ':-O']
+</script>
+
+</body>
+</html>

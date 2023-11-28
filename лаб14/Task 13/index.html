@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group by ID</title>
+</head>
+<body>
+
+<script>
+  let users = [
+    {id: 'іван', name: "Іван Іванко", age: 20},
+    {id: 'ганна', name: "Ганна Іванко", age: 24},
+    {id: 'петро', name: "Петро Петренко", age: 31},
+  ];
+
+  function groupById(arr) {
+    return arr.reduce((acc, user) => {
+      acc[user.id] = user;
+      return acc;
+    }, {});
+  }
+
+  let usersById = groupById(users);
+  console.log(usersById);
+</script>
+
+</body>
+</html>
